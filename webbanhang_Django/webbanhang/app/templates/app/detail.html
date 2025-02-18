@@ -1,0 +1,180 @@
+{% extends 'app/base.html' %}
+{% load static%}
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        {% block register %}
+        {%for product in products%}
+        <div class="container mt-5 mb-5">
+          <div class="row d-flex justify-content-center">
+              <div class="col-md-10">
+                  <div class="card">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="images p-3">
+                                  <div class="text-center p-4"> <img id="main-image" src="{{product.ImageURL}}" width="250" /> </div>   
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="product p-4">
+                                  <div class="d-flex justify-content-between align-items-center">
+                                      <div class="d-flex align-items-center">
+                                         <i class="fa fa-long-arrow-left"></i> 
+                                        <span class="ml-1">
+                                          <a href ="{%url 'home'%}" style="text-decoration: none;">Back</a>  
+                                        </span> 
+                                    </div>
+                                    <a href ="{%url 'cart'%}">
+                                      <i class="fa fa-shopping-cart text-muted"></i>
+                                    </a> 
+                                  </div>
+                                  
+                                      <h5 class="text-uppercase">{{product.name}}</h5>
+                                      <div class="price d-flex flex-row align-items-center"> <span class="act-price">{{product.price}} $</span>
+                                          
+                                      </div>
+                                  </div>
+                                  <p class="about">{{product.detail}}<br/></p>
+                                  
+                                  <div class="cart mt-4 align-items-center">
+                                  <button data-product={{product.id}} data-action = "add" class="btn btn-danger text-uppercase mr-2 px-4 add-btn update-cart">Add to cart</button>  </div>
+                                  
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <style>
+        /* Responsive CSS for product page */
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            padding: 15px;
+        }
+        
+        .card {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .images img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .images img:hover {
+            transform: scale(1.1);
+        }
+        
+        .product {
+            padding: 20px;
+        }
+        
+        .price {
+            font-size: 1.5em;
+            color: #ff4d4d;
+        }
+        
+        .btn-danger {
+            background-color: #ff4d4d;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        .btn-danger:hover {
+            background-color: #ff1a1a;
+            transform: scale(1.05);
+        }
+        
+        /* Responsive Design */
+        
+        @media (max-width: 768px) {
+            .row {
+                flex-direction: column;
+            }
+        
+            .col-md-6 {
+                width: 100%;
+            }
+        
+            .images {
+                text-align: center;
+            }
+        
+            .product {
+                padding: 15px;
+            }
+        
+            .btn-danger {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product h5 {
+                font-size: 1.2em;
+            }
+        
+            .price {
+                font-size: 1.2em;
+            }
+        
+            .btn-danger {
+                font-size: 1em;
+                padding: 10px;
+            }
+        }
+        
+        /* Smooth transitions */
+        .btn-danger, .fa-shopping-cart {
+            transition: all 0.3s ease;
+        }
+        
+        .fa-shopping-cart:hover {
+            color: #ff4d4d;
+            transform: scale(1.2);
+        }
+        
+        /* Add some space at the bottom */
+        .mb-5 {
+            margin-bottom: 30px;
+        }
+        
+        .mt-5 {
+            margin-top: 30px;
+        }
+        
+    </style>
+      {%endfor%}
+      {% endblock register%}
+    </body>
+</html>

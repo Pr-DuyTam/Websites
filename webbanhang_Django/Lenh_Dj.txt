@@ -1,0 +1,5 @@
+- django-admin startproject + tên đồ án
+- django-admin startapp app
+- python manage.py makemigrations --> thay đổi khi đổi Database
+- python manage.py migrate --> Cấu hình lại trang web
+- python manage.py runserver
